@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Forever Valentine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --love-red: #ff4d6d;
+            --soft-pink: #fff0f3;
+            --deep-rose: #800f2f;
+        }
+
+        body {
+            background: var(--soft-pink);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--deep-rose);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- HEARTS EVERYWHERE (FLOATING LAYER) --- */
+        #heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            /* Allows clicking buttons through this layer */
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: var(--love-red);
+            font-size: 1.5rem;
+            animation: float-up 6s linear forwards;
+            opacity: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- ROSE BOKEH EFFECT (CLICK TRIGGERED) --- */
+        #bokeh-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 50vh;
+            pointer-events: none;
+            z-index: 5;
+            /* Above background, below main text for readability */
+            display: none;
+            /* Appears on click */
+        }
+
+        .bokeh-dot {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 0, 50, 0.7) 0%, rgba(255, 77, 109, 0) 70%);
+            border-radius: 50%;
+            filter: blur(10px);
+            opacity: 0;
+            animation: rose-glow 4s ease-in-out forwards;
+        }
+
+        @keyframes rose-glow {
+            0% {
+                transform: translateY(100px) scale(0.5);
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-250px) scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        /* --- PAGE CONTENT STYLING --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle, #fff0f3 0%, #ffccd5 100%);
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--love-red);
+        }
+
+        .quote-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.1);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 77, 109, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        .quote-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .btn-love {
+            background: var(--love-red);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: 0.4s;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+            position: relative;
+            z-index: 20;
+        }
+
+        .btn-love:hover {
+            background: var(--deep-rose);
+            transform: scale(1.05);
+            color: white;
+        }
+
+        #surprise-msg {
+            font-family: 'Dancing Script', cursive;
+            color: var(--love-red);
+            font-size: 3rem;
+            margin-top: 30px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        footer {
+            padding: 40px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="heart-container"></div>
+    <div id="bokeh-container"></div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>To My Favorite Person</h1>
+            <p class="lead">Every moment with you is a gift I never expected.</p>
+            <div class="fs-2 mt-3">❤️</div>
+        </div>
+    </section>
+
+    <main class="container py-5 text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <div class="quote-card">
+                    <p class="quote-text">"You are my today and all of my tomorrows."</p>
+                    <small>— Leo Christopher</small>
+                </div>
+
+                <div class="quote-card">
+                    <p class="quote-text">"I love you not only for what you are, but for what I am when I am with you."
+                    </p>
+                    <small>— Elizabeth Barrett Browning</small>
+                </div>
+
+                <div class="py-5">
+                    <button class="btn btn-love" id="loveBtn" onclick="revealMagic()">CLICK FOR A SURPRISE</button>
+                    <div id="surprise-msg" class="d-none">Will you be Mine Forever? 💍</div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center">
+        With all my love, Sibin Sebastian ❤️
+    </footer>
+
+    <script>
+        /* --- HEART GENERATOR --- */
+        function createHeart() {
+            const container = document.getElementById('heart-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            const duration = Math.random() * 3 + 4;
+            heart.style.animationDuration = duration + 's';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+        setInterval(createHeart, 300);
+
+        /* --- BOKEH GENERATOR --- */
+        function createBokeh() {
+            const container = document.getElementById('bokeh-container');
+            const dot = document.createElement('div');
+            dot.classList.add('bokeh-dot');
+
+            const size = Math.random() * 120 + 60; // Big soft orbs
+            dot.style.width = size + 'px';
+            dot.style.height = size + 'px';
+            dot.style.left = Math.random() * 100 + 'vw';
+            dot.style.bottom = "-50px";
+
+            const duration = Math.random() * 2 + 3;
+            dot.style.animationDuration = duration + 's';
+
+            container.appendChild(dot);
+            setTimeout(() => dot.remove(), duration * 1000);
+        }
+
+        /* --- MAGIC REVEAL --- */
+        function revealMagic() {
+            // Show Message
+            const msg = document.getElementById('surprise-msg');
+            msg.classList.remove('d-none');
+
+            // Activate Bokeh Container
+            const bokehLayer = document.getElementById('bokeh-container');
+            bokehLayer.style.display = 'block';
+
+            // Initial Bokeh Burst
+            for (let i = 0; i < 30; i++) {
+                setTimeout(createBokeh, i * 100);
+            }
+
+            // Continuous Bokeh for 10 seconds
+            const bokehInterval = setInterval(createBokeh, 150);
+            setTimeout(() => clearInterval(bokehInterval), 10000);
+
+            // Hide the button after click
+            document.getElementById('loveBtn').style.display = 'none';
+
+            // Extra heart burst
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        }
+    </script>
+</body>
+
+</html>
