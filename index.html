@@ -66,44 +66,7 @@
             }
         }
 
-        /* --- ROSE BOKEH EFFECT (CLICK TRIGGERED) --- */
-        #bokeh-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100vw;
-            height: 50vh;
-            pointer-events: none;
-            z-index: 5;
-            /* Above background, below main text for readability */
-            display: none;
-            /* Appears on click */
-        }
-
-        .bokeh-dot {
-            position: absolute;
-            background: radial-gradient(circle, rgba(255, 0, 50, 0.7) 0%, rgba(255, 77, 109, 0) 70%);
-            border-radius: 50%;
-            filter: blur(10px);
-            opacity: 0;
-            animation: rose-glow 4s ease-in-out forwards;
-        }
-
-        @keyframes rose-glow {
-            0% {
-                transform: translateY(100px) scale(0.5);
-                opacity: 0;
-            }
-
-            30% {
-                opacity: 0.6;
-            }
-
-            100% {
-                transform: translateY(-250px) scale(2.5);
-                opacity: 0;
-            }
-        }
+       
 
         /* --- PAGE CONTENT STYLING --- */
         .hero {
